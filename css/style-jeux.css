@@ -231,7 +231,7 @@ body {
     user-select: none;             /* non sélectionnable */
 }
 
-/* ----- CAROUSEL SECTION ----- */
+/* ----- CAROUSEL ----- */
 .carousel-section {
     position: relative;
     margin: 0;
@@ -239,72 +239,55 @@ body {
     background: rgba(0,0,0,0.6);
     backdrop-filter: blur(8px);
     text-align: center;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .carousel-section h2 {
-    margin-bottom: 30px;
-    font-size: 2em;
+    margin-bottom: 40px;
+    font-size: 2.2em;
     font-weight: 700;
 }
 
-/* ----- CAROUSEL WRAPPER ----- */
-.carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    overflow: hidden; /* ← IMPORTANT */
-    width: 1000px;     /* largeur totale visible */
-    margin: auto;
+/* Limiter la largeur du carousel */
+.owl-carousel {
+    max-width: 900px;
+    margin: 0 auto !important;
+    padding: 10px 0;
 }
 
-/* ----- BUTTONS ----- */
-.carousel-btn {
-    background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    font-size: 2em;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 8px;
-    z-index: 10; 
-    position: relative;
-}
-.carousel-btn:hover {
-    background: rgba(255,255,255,0.35);
+/* Centrer les items dans Owl */
+.owl-carousel .owl-stage {
+    display: flex !important;
+    justify-content: center !important;
 }
 
-/* ----- TRACK ----- */
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    overflow: hidden;
-    width: max-content;      
-    transition: transform .3s ease;
-}
-
-/* ----- CARDS ----- */
+/* Style des cards */
 .carousel-card {
     background: rgba(255,255,255,0.07);
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 12px;
+
     width: 260px;
-    flex-shrink: 0;
-    text-decoration: none;
+    display: block;
     color: white;
+    text-decoration: none;
     padding-bottom: 10px;
-    transition: transform .2s;
-    flex: 0 0 260px; 
-    display: block; 
+
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* Hover élégant */
 .carousel-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
 }
 
 .carousel-card img {
-    display: block;
     width: 100%;
     height: 150px;
     object-fit: cover;
@@ -315,4 +298,41 @@ body {
     display: block;
     margin-top: 10px;
     font-size: 1.1em;
+    padding-left: 10px;
+}
+
+/* Boutons Owl personnalisés */
+.owl-nav button {
+    font-size: 2.2em !important;
+    background: rgba(255,255,255,0.15) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 4px 12px !important;
+    transition: 0.2s;
+}
+
+.owl-nav button:hover {
+    background: rgba(255,255,255,0.3) !important;
+}
+
+/* Espacement sous le carousel */
+.owl-nav {
+    margin-top: 20px !important;
+}
+
+/* Dots désactivés */
+.owl-dots {
+    display: none !important;
+}
+
+.carousel-section .owl-carousel,
+.carousel-section .owl-stage-outer {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+}
+
+/* On évite que le stage s'étale bizarrement */
+.carousel-section .owl-stage {
+    display: flex !important;
+    justify-content: center !important;
 }

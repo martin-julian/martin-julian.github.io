@@ -3,55 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TITRE DU JEU</title>
+    <title>Julian Martin - GAME NAME</title>
 
-    <!-- CSS partagé de toutes les pages de jeu -->
+    <!-- CSS partagé -->
     <link rel="stylesheet" href="../css/style-jeux.css">
 </head>
 
-<body>
+<body data-game="GAMENAME">
 
-    <!-- Background GIF -->
-    <img class="bg" src="../content/template-gif.gif">
+    <!-- NAVBAR -->
+    <div id="navbar-placeholder"></div>
 
-    <!-- Overlay -->
-    <div class="overlay"></div>
+    <div class="game-fullscreen">
+        <img class="bg" src="../content/template-gif.gif">
+        <div class="overlay"></div>
 
-    <!-- Layout principal -->
-    <div class="layout">
+        <div class="layout">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            </div>
 
-        <!-- Carte vidéo -->
-        <div class="video-card">
-            <iframe 
-                src="https://www.youtube.com/embed/YOUTUBE_ID"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
+            <div class="info-panel">
+                <h1>NOM DU JEU</h1>
+
+                <div class="info-row">
+                    <span class="info-icon">📅</span>
+                    <span class="info-text">Année : ANNEE</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">⏱</span>
+                    <span class="info-text">Durée : DUREE</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">👥</span>
+                    <span class="info-text">Équipe : NOMBRES personnes</span>
+                </div>
+
+                <a class="play-btn" href="LIEN_BUILD" target="_blank">▶ Play</a>
+            </div>
         </div>
-
-        <!-- Panel flouté -->
-        <div class="info-panel">
-            <h1>TITRE DU JEU</h1>
-
-            <div class="info-row">
-                <span class="info-icon">📅</span>
-                <span class="info-text">Année : ANNEE</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-icon">⏱</span>
-                <span class="info-text">Durée : DUREE_DE_PRODUCTION</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-icon">👥</span>
-                <span class="info-text">Équipe : NOMBRE personnes</span>
-            </div>
-
-            <a class="play-btn" href="LIEN_BUILD" target="_blank">▶ Play</a>
-        </div>
-
     </div>
+
+    <!-- Carrousel -->
+    <div id="carousel-placeholder"></div>
+
+    <!-- CSS Owl -->
+    <link rel="stylesheet" href="../components/owl.carousel.min.css">
+    <link rel="stylesheet" href="../components/owl.theme.default.min.css">
+
+    <!-- Charge games.js -->
+    <script src="/data/games.js"></script>
+
+    <!-- Charge JS du carousel (important : AVANT l'injection du HTML du carousel) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/components/owl.carousel.min.js"></script>
+    <script src="/components/carousel.js"></script>
+
+    <!-- Charge la navbar -->
+    <script>
+        fetch("/components/navbar.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+    </script>
+
+    <!-- Charge le HTML du carousel -->
+    <script>
+        fetch("/components/carousel.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("carousel-placeholder").innerHTML = html;
+
+                // Maintenant que le HTML est chargé, on déclenche l’événement :
+                window.dispatchEvent(new Event("gamesReady"));
+            });
+    </script>
 
 </body>
 </html>

@@ -3,64 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canardage</title>
+    <title>Julian Martin - Tian Deng</title>
 
-    <!-- CSS partagé de toutes les pages de jeu -->
+    <!-- CSS partagé -->
     <link rel="stylesheet" href="../css/style-jeux.css">
 </head>
 
-<body>
-    <!-- ===== NAVBAR ===== -->
+<body data-game="tiandeng">
+
+    <!-- NAVBAR -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Background GIF -->
-    <img class="bg" src="../content/template-gif.gif">
+    <div class="game-fullscreen">
+        <img class="bg" src="../content/template-gif.gif">
+        <div class="overlay"></div>
 
-    <!-- Overlay -->
-    <div class="overlay"></div>
+        <div class="layout">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            </div>
 
-    <!-- Layout principal -->
-    <div class="layout">
+            <div class="info-panel">
+                <h1>Tian Deng</h1>
 
-        <!-- Carte vidéo -->
-        <div class="video-card">
-            <iframe 
-                src="https://www.youtube.com/embed/YOUTUBE_ID"
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
+                <div class="info-row">
+                    <span class="info-icon">📅</span>
+                    <span class="info-text">Année : 2025</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">⏱</span>
+                    <span class="info-text">Durée : 9 mois</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">👥</span>
+                    <span class="info-text">Équipe : 20 personnes</span>
+                </div>
+
+                <div class="coming-btn">À venir</div>
+            </div>
         </div>
-
-        <!-- Panel flouté -->
-        <div class="info-panel">
-            <h1>Canardage</h1>
-
-
-            <div class="info-row">
-                <span class="info-icon">📅</span>
-                <span class="info-text">Année : 2024    </span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-icon">⏱</span>
-                <span class="info-text">Durée : 2 mois</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-icon">👥</span>
-                <span class="info-text">Équipe : 1 personne</span>
-            </div>
-
-            <a class="play-btn" href="LIEN_BUILD" target="_blank">▶ Play</a>
-        </div>
-
     </div>
 
-    <!-- LOAD NAVBAR -->
+    <!-- Carrousel -->
+    <div id="carousel-placeholder"></div>
+
+    <!-- CSS Owl -->
+    <link rel="stylesheet" href="../components/owl.carousel.min.css">
+    <link rel="stylesheet" href="../components/owl.theme.default.min.css">
+
+    <!-- Charge games.js -->
+    <script src="/data/games.js"></script>
+
+    <!-- Charge JS du carousel (important : AVANT l'injection du HTML du carousel) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/components/owl.carousel.min.js"></script>
+    <script src="/components/carousel.js"></script>
+
+    <!-- Charge la navbar -->
     <script>
-    fetch("/components/navbar.html")
-        .then(res => res.text())
-        .then(html => document.getElementById("navbar-placeholder").innerHTML = html);
+        fetch("/components/navbar.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+    </script>
+
+    <!-- Charge le HTML du carousel -->
+    <script>
+        fetch("/components/carousel.html")
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById("carousel-placeholder").innerHTML = html;
+
+                // Maintenant que le HTML est chargé, on déclenche l’événement :
+                window.dispatchEvent(new Event("gamesReady"));
+            });
     </script>
 
 </body>

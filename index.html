@@ -23,31 +23,54 @@
         </div>
     </div>
 
+    <h2 class="section-title">Jeux</h2>
+    <div class="project-grid" id="final-grid"></div>
+
+    <h2 class="section-title">Prototypes</h2>
+    <div class="project-grid" id="proto-grid"></div>
+
+    <!-- <h2 class="section-title">Outils</h2> -->
+    <!-- <div class="project-grid" id="tools-grid"></div> -->
+
     <!-- ===== PROJECT GRID ===== -->
-    <div class="project-grid">
-
-        <a class="project-card" href="jeux/tiandeng.html">
-            <img src="images/tiandeng-thumb.jpg" alt="">
-            <div class="project-card-title">Aventure</div>
-        </a>
-
-        <a class="project-card" href="jeux/deliverance.html">
-            <img src="images/witches-thumb.jpg" alt="">
-            <div class="project-card-title">Deliverance: Witches' Heritage</div>
-        </a>
-
-        <a class="project-card" href="jeux/canardage.html">
-            <img src="images/canardage-thumb.jpg" alt="">
-            <div class="project-card-title">Canardage</div>
-        </a>
-
-    </div>
+    <div class="project-grid" id="project-grid"></div>
 
     <!-- LOAD NAVBAR -->
     <script>
         fetch("/components/navbar.html")
             .then(res => res.text())
             .then(html => document.getElementById("navbar-placeholder").innerHTML = html);
+    </script>
+
+    <!-- LOAD GAMES DATA -->
+    <script src="/data/games.js"></script>
+
+     <script>
+        function buildGrid() {
+
+            const finalGrid = document.getElementById("final-grid");
+            const protoGrid = document.getElementById("proto-grid");
+            const toolsGrid = document.getElementById("tools-grid");
+
+            window.GAMES.forEach(game => {
+                const card = document.createElement("a");
+                card.className = "project-card";
+                card.href = game.url;
+
+                card.innerHTML = `
+                    <img src="${game.thumb}" alt="">
+                    <div class="project-card-title">${game.name}</div>
+                `;
+
+                if (game.type === "final") finalGrid.appendChild(card);
+                if (game.type === "proto") protoGrid.appendChild(card);
+                if (game.type === "tool") toolsGrid.appendChild(card);
+            });
+        }
+
+        // Event listener + fallback immédiat
+        window.addEventListener("gamesReady", buildGrid);
+        if (window.GAMES) buildGrid();
     </script>
 </body>
 </html>

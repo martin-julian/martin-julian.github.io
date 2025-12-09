@@ -88,6 +88,15 @@ body {
     display: block;
 }
 
+.section-title {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+}
+
 /*===== HERO ========*/
 .hero-contact {
     margin-top: 15px;
@@ -121,39 +130,96 @@ body {
 }
 
 /* ===== PROJECT GRID ===== */
+
+.project-card,
+.project-card:visited,
+.project-card .project-card-title,
+.project-card .project-card-title:visited {
+    color: white !important;
+    font-weight: 700 !important;
+}
+
 .project-grid {
-    max-width: 1100px;
-    margin: 50px auto;
     display: grid;
-    gap: 20px;
-    padding: 0 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
 }
 
 .project-card {
     position: relative;
-    border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
-    transition: 0.25s;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform .25s ease, box-shadow .25s ease;
+    display: block;
 }
 
 .project-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.45);
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #fff2, #fff1 40%, transparent);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 .project-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    filter: brightness(75%);
+    display: block;
+}
+
+.card-image {
+    position: relative;
+}
+
+.card-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+}
+
+.card-title {
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    color: rgba(255,255,255,0.95);
+    font-size: 1.3em;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
 .project-card-title {
     position: absolute;
-    bottom: 10px;
-    left: 15px;
-    font-size: 1.3em;
-    font-weight: bold;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    padding: 12px 15px;
+
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white !important;
+
+    background: rgba(0, 0, 0, 0.55);  /* noir semi-opaque */
+    backdrop-filter: blur(6px);       /* flou */
 }
