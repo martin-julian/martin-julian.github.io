@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITRE DU JEU</title>
+
+    <!-- CSS partagé de toutes les pages de jeu -->
+    <link rel="stylesheet" href="../css/style-jeux.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- FULLSCREEN GAME AREA -->
+    <div class="game-fullscreen">
+
+        <!-- Background GIF -->
+        <img class="bg" src="../content/template-gif.gif">
+
+        <!-- Overlay -->
+        <div class="overlay"></div>
+
+        <!-- Layout principal -->
+        <div class="layout">
+
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" allowfullscreen></iframe>
+            </div>
+
+            <div class="info-panel">
+                <h1>Tian Deng</h1>
+
+                <div class="info-row">
+                    <span class="info-icon">📅</span>
+                    <span class="info-text">Année : 2025</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">⏱</span>
+                    <span class="info-text">Durée : 9 mois</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-icon">👥</span>
+                    <span class="info-text">Équipe : 20 personnes</span>
+                </div>
+
+                <div class="coming-btn">À venir</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CAROUSEL OUTSIDE THE FULLSCREEN SECTION -->
+    <div class="carousel-section">
+
+        <h2>Découvrir d’autres projets</h2>
+
+        <div class="carousel">
+            <button class="carousel-btn left">⟵</button>
+
+            <div class="carousel-track">
+                <a class="carousel-card" href="/jeux/witches.html">
+                    <img src="/images/witches-thumb.jpg" alt="Deliverance: Witches">
+                    <span>Deliverance: Witches</span>
+                </a>
+
+                <a class="carousel-card" href="/jeux/canardage.html">
+                    <img src="/images/canardage-thumb.jpg" alt="Canardage">
+                    <span>Canardage</span>
+                </a>
+
+                <a class="carousel-card" href="/jeux/duel.html">
+                    <img src="/images/duel-thumb.jpg" alt="Duel 1v1">
+                    <span>Duel 1v1</span>
+                </a>
+
+                <!-- Tu peux en rajouter d’autres ici -->
+            </div>
+
+            <button class="carousel-btn right">⟶</button>
+        </div>
+
+    </div>
+
+    <!-- LOAD NAVBAR -->
+    <script>
+        fetch("/components/navbar.html")
+            .then(res => res.text())
+            .then(html => document.getElementById("navbar-placeholder").innerHTML = html);
+    </script>
+
+    <!-- CAROUSEL SCRIPT -->
+    <script>
+        const track = document.querySelector(".carousel-track");
+        const leftBtn = document.querySelector(".carousel-btn.left");
+        const rightBtn = document.querySelector(".carousel-btn.right");
+
+        let position = 0;
+        const cardWidth = 280;
+        const maxOffset = -(cardWidth * (track.children.length - 3));
+
+        rightBtn.addEventListener("click", () => {
+            position = Math.max(position - cardWidth, maxOffset);
+            track.style.transform = `translateX(${position}px)`;
+        });
+
+        leftBtn.addEventListener("click", () => {
+            position = Math.max(position + cardWidth, 0);
+            track.style.transform = `translateX(${position}px)`;
+        });
+    </script>
+
+</body>
+</html>

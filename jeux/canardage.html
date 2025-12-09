@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canardage</title>
+
+    <!-- CSS partagé de toutes les pages de jeu -->
+    <link rel="stylesheet" href="../css/style-jeux.css">
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Background GIF -->
+    <img class="bg" src="../content/template-gif.gif">
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Layout principal -->
+    <div class="layout">
+
+        <!-- Carte vidéo -->
+        <div class="video-card">
+            <iframe 
+                src="https://www.youtube.com/embed/YOUTUBE_ID"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Panel flouté -->
+        <div class="info-panel">
+            <h1>Canardage</h1>
+
+
+            <div class="info-row">
+                <span class="info-icon">📅</span>
+                <span class="info-text">Année : 2024    </span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">⏱</span>
+                <span class="info-text">Durée : 2 mois</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">👥</span>
+                <span class="info-text">Équipe : 1 personne</span>
+            </div>
+
+            <a class="play-btn" href="LIEN_BUILD" target="_blank">▶ Play</a>
+        </div>
+
+    </div>
+
+    <!-- LOAD NAVBAR -->
+    <script>
+    fetch("/components/navbar.html")
+        .then(res => res.text())
+        .then(html => document.getElementById("navbar-placeholder").innerHTML = html);
+    </script>
+
+</body>
+</html>

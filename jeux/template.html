@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITRE DU JEU</title>
+
+    <!-- CSS partagé de toutes les pages de jeu -->
+    <link rel="stylesheet" href="../css/style-jeux.css">
+</head>
+
+<body>
+
+    <!-- Background GIF -->
+    <img class="bg" src="../content/template-gif.gif">
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Layout principal -->
+    <div class="layout">
+
+        <!-- Carte vidéo -->
+        <div class="video-card">
+            <iframe 
+                src="https://www.youtube.com/embed/YOUTUBE_ID"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Panel flouté -->
+        <div class="info-panel">
+            <h1>TITRE DU JEU</h1>
+
+            <div class="info-row">
+                <span class="info-icon">📅</span>
+                <span class="info-text">Année : ANNEE</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">⏱</span>
+                <span class="info-text">Durée : DUREE_DE_PRODUCTION</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-icon">👥</span>
+                <span class="info-text">Équipe : NOMBRE personnes</span>
+            </div>
+
+            <a class="play-btn" href="LIEN_BUILD" target="_blank">▶ Play</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

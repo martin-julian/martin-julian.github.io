@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    background: #0f0f0f;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    width: 100%;
+    box-sizing: border-box;            
+    padding: 20px 60px 15px 30px;        /* top right bottom left */
+    background: #141414;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.navbar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== Dropdown ===== */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 8px 5px;
+}
+
+/* MENU DÉROULANT RESPONSIVE */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #1a1a1a;
+    min-width: 180px;
+    max-width: 85vw; 
+    border: 1px solid #333;
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+/* VERSION MOBILE */
+@media (max-width: 600px) {
+    .dropdown-content {
+        left: 0;
+        right: auto;
+        width: 100vw;            
+        max-width: 100vw;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+.dropdown-content a {
+    color: #ccc;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+    background: #333;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*===== HERO ========*/
+.hero-contact {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.hero-contact a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.hero-contact a:hover {
+    color: white;
+}
+
+
+/* ===== MAIN CONTENT ===== */
+.hero {
+    padding-top: 120px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+/* ===== PROJECT GRID ===== */
+.project-grid {
+    max-width: 1100px;
+    margin: 50px auto;
+    display: grid;
+    gap: 20px;
+    padding: 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.project-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    filter: brightness(75%);
+}
+
+.project-card-title {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
